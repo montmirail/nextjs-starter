@@ -1,0 +1,32 @@
+{
+  "name": "nextjs-starter",
+  "version": "0.0.1",
+  "description": "Starter project for nextjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pejoessel/nextjs-starter.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "next"
+  ],
+  "author": "Montmirail",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pejoessel/nextjs-starter/issues"
+  },
+  "homepage": "https://github.com/pejoessel/nextjs-starter#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "next": "^3.0.1-beta.8"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "mochai": "^0.2.5"
+  }
+}
