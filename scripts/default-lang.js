@@ -1,5 +1,5 @@
-const { readFileSync, writeFileSync } = require('fs');
-const { resolve } = require('path');
+const {readFileSync, writeFileSync} = require('fs');
+const {resolve} = require('path');
 const glob = require('glob');
 
 const defaultMessages = glob.sync('./lang/.messages/**/*.json')
@@ -7,12 +7,11 @@ const defaultMessages = glob.sync('./lang/.messages/**/*.json')
     .map((file) => JSON.parse(file))
     .reduce((messages, descriptors) => {
         descriptors.forEach(({id, defaultMessage}) => {
-            if(messages.hasOwnProperty(id)) {
-                throw new Error(`Duplicate message id: ${id}`);
+            if (messages.hasOwnProperty(id)) {
+                throw new Error(`Duplicate message id: ${id}`)
             }
-            messages[id] = defaultMessage;
+            messages[id] = defaultMessage
         });
-
         return messages
     }, {});
 
