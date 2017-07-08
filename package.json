@@ -4,7 +4,7 @@
   "description": "Starter project for nextjs",
   "main": "index.js",
   "scripts": {
-    "start": "next start -p 8000",
+    "start": "node server.js",
     "dev": "node server",
     "build": "next build && node ./scripts/default-lang",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,11 +30,13 @@
     "babel-preset-stage-2": "^6.24.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "express-session": "^1.15.3",
     "glob": "^7.1.2",
     "intl": "^1.2.5",
     "next": "^3.0.1-beta.8",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-ga": "^2.2.0",
     "react-intl": "^2.3.0"
   },
   "devDependencies": {

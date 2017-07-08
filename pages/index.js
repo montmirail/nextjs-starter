@@ -18,7 +18,7 @@ export default pageWithIntl(({intl}) => (
             <meta name='description' content={intl.formatMessage(description)} />
         </Head>
         <p>
-            <FormattedMessage id='greeting' />
+            <FormattedMessage id='greeting' defaultMessage="Heil Hydra"/>
         </p>
         <p>
             <FormattedNumber value={1000} />

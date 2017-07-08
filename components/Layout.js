@@ -1,5 +1,6 @@
 import React from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
+import { initGA, logPageView } from '../utils/analytics';
 import Head from 'next/head';
 
 const messages = defineMessages({
@@ -9,14 +10,30 @@ const messages = defineMessages({
     }
 });
 
-export default injectIntl(({intl, title, children}) => (
-    <div>
-        <Head>
-            <meta name='viewport' content='width=device-width, initial-scale=1' />
-            <title>{title || intl.formatMessage(messages.title)}</title>
-        </Head>
+class Layout extends React.Component {
 
-        {children}
+    componentDidMount() {
+        if(!window.GA_INITIALIZED) {
+            initGA();
+            window.GA_INITIALIZED = true;
+        }
+        logPageView();
+    }
 
-    </div>
-));
+    render() {
+        const { intl, title, children} = this.props;
+        return (
+            <div>
+                <Head>
+                    <meta name='viewport' content='width=device-width, initial-scale=1' />
+                    <title>{title || intl.formatMessage(messages.title)}</title>
+                </Head>
+
+                {children}
+
+            </div>
+        )
+    }
+}
+
+export default injectIntl(Layout);

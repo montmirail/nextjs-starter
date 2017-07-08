@@ -4,6 +4,8 @@ const IntlPolyfill = require('intl');
 Intl.NumberFormat = IntlPolyfill.NumberFormat;
 Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
 
+const express = require('express');
+const session = require('express-session');
 const {readFileSync} = require('fs');
 const {basename} = require('path');
 const {createServer} = require('http');
@@ -43,14 +45,39 @@ const getMessages = (locale) => {
 };
 
 app.prepare().then(() => {
-    createServer((req, res) => {
+    const server = express();
+
+
+    server.use(session({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: true
+    }));
+
+    server.get('/:lg(\[a-z]{2}\)', (req, res) => {
+        switch (req.params.lg) {
+            case 'fr':
+                req.session.lang = 'fr';
+                break;
+            default:
+                req.session.lang = 'en';
+        }
+        res.redirect('/');
+    });
+
+    server.get('*', (req, res) => {
         const accept = accepts(req);
         const locale = accept.language(dev ? ['en'] : languages);
+
         req.locale = locale;
-        req.localeDataScript = getLocaleDataScript(locale);
-        req.messages = dev ? {} : getMessages(locale);
+        req.localeDataScript = getLocaleDataScript(req.session.lang ? req.session.lang : locale);
+        req.messages = dev ? {} : getMessages(req.session.lang ? req.session.lang : locale);
+
         handle(req, res);
-    }).listen(config.port, (err) => {
+
+    });
+
+    server.listen(config.port, (err) => {
         if(err){
             throw err;
         } else {

@@ -23,7 +23,6 @@ export default (Page) => {
             // Get the `locale` and `messages` from the request object on the server.
             // In the browser, use the same values that the server serialized.
             const { req } = context;
-            console.log(req);
             const { locale, messages } = req || window.__NEXT_DATA__.props;
 
             // Always update the current time on page load/transition because the
