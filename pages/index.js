@@ -1,8 +1,8 @@
 import React from 'react'
 import {FormattedMessage, FormattedNumber, defineMessages} from 'react-intl'
 import Head from 'next/head';
-import pageWithIntl from '../components/PageWithIntl';
-import Layout from '../components/Layout';
+import defaultPage from '../hocs/defaultPage'
+
 
 const {description} = defineMessages({
     description: {
@@ -12,16 +12,18 @@ const {description} = defineMessages({
 });
 
 
-export default pageWithIntl(({intl}) => (
-    <Layout>
+const Index = ({intl}) => (
+    <section>
+
         <Head>
             <meta name='description' content={intl.formatMessage(description)} />
         </Head>
+
         <p>
             <FormattedMessage id='greeting' defaultMessage="Heil Hydra"/>
         </p>
-        <p>
-            <FormattedNumber value={1000} />
-        </p>
-    </Layout>
-))
+
+    </section>
+);
+
+export default defaultPage(Index);

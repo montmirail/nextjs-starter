@@ -3,5 +3,6 @@
   "nav.home": "Accueil",
   "nav.about": "À propos de nous",
   "description": "Un exemple d'application intégrant React Intl avec Next.js",
-  "greeting": "Heil Montmirail!"
+  "greeting": "Heil Montmirail!",
+  "contact.title": "Formulaire de contact"
 }
